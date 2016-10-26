@@ -310,12 +310,45 @@ To type a number (type digit marked by x):
 =head1 DESCRIPTION
 
 Welcome to tabrace, a game played with tab completion. You must first enable tab
-completion for your shell. Here's how to do it in bash:
+completion for your shell. Here's how to do it in the various shells:
+
+=over
+
+=item * bash
 
  % complete -C tabrace tabrace
 
-Or alternatively, install shcompgen from CPAN using 'cpanm -n App::shcompgen'.
-For instructions on how to enable tab completion for other shells, see manpage.
+Or alternatively, install L<shcompgen> from CPAN using C<cpanm -n
+App::shcompgen>.
+
+=item * tcsh
+
+ % complete tabrace 'p/*/`tabrace`/'
+
+Or alternatively, install L<shcompgen> from CPAN using C<cpanm -n
+App::shcompgen>.
+
+=item * zsh
+
+Put a file named C<_tabrace> containing the text below somewhere to your
+C<fpath>:
+
+ #compdef tabrace
+ _tabrace() {
+   si=$IFS
+   compadd -- $(COMP_LINE=$BUFFER COMP_POINT=$CURSOR tabrace)
+   IFS=$si
+ }
+ _tabrace "$@"
+
+Or alternatively, install L<shcompgen> from CPAN using C<cpanm -n
+App::shcompgen>.
+
+=item * fish
+
+ % complete -c tabrace -f -a '(begin; set -lx COMP_SHELL fish; set -lx COMP_LINE (commandline); set -lx COMP_POINT (commandline -C); tabrace; end)'
+
+=back
 
 The objective of the game is to type 3 numbers as fast as possible. For each
 number, you type "tabrace " then press Tab (Tab) to see digits between 0 to 9.
