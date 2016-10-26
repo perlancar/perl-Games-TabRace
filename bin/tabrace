@@ -43,7 +43,7 @@ sub enter_high_scores {
 
     if (@{ $State->{high_scores} } < 5 ||
             $State->{score} > $State->{high_scores}[-1]{score}) {
-        print "Congratulations, you got into the high scores list!\n\n";
+        print "Congratulations, you made the high scores list!\n\n";
     }
 
     push @{ $State->{high_scores} }, {
