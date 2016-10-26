@@ -1,5 +1,13 @@
 Revision history for Games-TabRace
 
+0.002   2016-10-26 (PERLANCAR)
+
+	- [Bugfix] Fix criteria of displaying 'you entered into the high
+	  scores list'.
+
+	- [doc] Add Description.
+
+
 0.001   2016-10-26 (PERLANCAR)
 
         - First release.
