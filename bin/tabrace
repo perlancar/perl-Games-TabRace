@@ -1,0 +1,146 @@
+#!perl
+
+# DATE
+# VERSION
+
+use 5.010001;
+use strict;
+use warnings;
+
+use Getopt::Long::Complete qw(GetOptionsWithCompletion);
+
+my %Opts = (
+    'data_file' => "$ENV{HOME}/.tabrace.dat",
+);
+my $State = {
+    state => 'uninit',
+};
+
+my $data_file_read;
+sub read_data_file {
+    return if $data_file_read;
+    require JSON::MaybeXS;
+    open my $fh, "<", $Opts{data_file} or return;
+    local $/;
+    my $content = <$fh>;
+    $State = JSON::MaybeXS::decode_json($content);
+    $data_file_read++;
+}
+
+sub save_data_file {
+    require JSON::MaybeXS;
+    open my $fh, ">", $Opts{data_file}
+        or die "Can't write to data file '$Opts{data_file}': $!\n";
+    print $fh JSON::MaybeXS::encode_json($State);
+}
+
+sub gen_number {
+    my $num_digits = int(3*rand() + 4);
+    $State->{current_number} =
+        int(10**($num_digits-1) + 9*10**($num_digits-1)*rand());
+    $State->{num_completed_digits} = 0;
+}
+
+GetOptionsWithCompletion(
+    sub {
+        my %args = @_;
+
+        read_data_file();
+    },
+    "help|h|?" => sub {
+        print "Please see manpage for help.\n";
+        exit 0;
+    },
+    "version|v" => sub {
+        print "tabrace version ", ($main::VERSION // 'dev'), "\n";
+        exit 0;
+    },
+    "reset" => sub {
+        read_data_file();
+        $State->{state} = 'uninit';
+        write_data_file();
+    },
+);
+
+read_data_file();
+if ($State->{state} eq 'uninit') {
+    require File::Which;
+    unless (File::Which::which("tabrace")) {
+        print <<'_';
+
+tabrace doesn't seem to be in your PATH. For proper game play, please put
+me in your PATH first.
+_
+        exit 1;
+    }
+    $State->{state} = 'play';
+    gen_number();
+    write_data_file();
+    print <<'_';
+
+Welcome to tabrace, a game played with tab completion. You must first enable tab
+completion for your shell. Here's how to do it in bash:
+
+    % complete -C tabrace tabrace
+
+Or alternatively, install shcompgen from CPAN using 'cpanm -n App::shcompgen'.
+For instructions on how to enable tab completion for other shells, see manpage.
+
+The objective of the game is to type numbers as fast as possible. You press Tab
+(Tab) to see digits between 0 to 9. There's an asterisk (*) next to the correct
+digit. Type the digit and press Tab (Tab) again to see the next digit. After all
+digits are typed, press Enter to clock in your time.
+
+I'm ready to play! Are you? Type "tabrace" and press Tab (Tab) to start.
+
+_
+    exit 0;
+} else {
+    print <<'_';
+
+You are in a game play. Type "tabrace" and press Tab (Tab) to continue playing.
+Or, if you want to reset the game, type "tabrace --reset" and press Enter.
+
+_
+    exit 0;
+
+}
+
+# ABSTRACT: A game played by shell tab completion
+# PODNAME:
+
+=head1 SYNOPSIS
+
+To start playing the game:
+
+ % tabrace <enter>
+
+To type a number (type digit marked by *):
+
+ % tabrace <tab>
+ 0    1    2    3    4*   5    6    7    8    9
+ % tabrace 4<tab>
+ 40    41    42    43    44   45    46    47*    48    49
+ % tabrace 47<tab>
+ 470*    471    472    473    474   475    476    477    478    479
+ % tabrace 470<tab>
+ 4700    4701    4702    4703    4704   4705    4706    4707    4708*    4709
+ % tabrace 4708<tab>
+ % tabrace 4708 _<enter>
+
+
+=head1 DESCRIPTION
+
+
+=head1 OPTIONS
+
+=head2 --help, -h, -?
+
+=head2 --version, -v
+
+=head2 --reset
+
+Reset game.
+
+
+=head1 SEE ALSO
