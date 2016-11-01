@@ -275,7 +275,7 @@ _
         print <<'_';
 
 You are in a game play. Type "tabrace" and press Tab (Tab) to continue playing.
-Or, if you want to reset the game, type "tabrace --reset" and press Enter.
+Or, if you want to reset the game, type "tabrace --reset-game" and press Enter.
 
 _
         exit 0;
