@@ -52,7 +52,7 @@ sub enter_high_scores {
         time  => time(),
     };
     $State->{high_scores} = [
-        sort { $b->{score} <=> $a->{score} }
+        sort { ($b->{score}//0) <=> ($a->{score}//0) }
             @{ $State->{high_scores} }
     ];
     splice @{ $State->{high_scores} }, 5
@@ -259,6 +259,7 @@ _
             print "You typed the $nth number incorrectly, the correct number is $State->{current_number}.\n\n";
         }
         if ($State->{num_completed_numbers} >= 3) {
+            $State->{score} //= 0;
             print "Game over. Your total score for this game: $State->{score}.\n\n";
             enter_high_scores();
             print_high_scores();
