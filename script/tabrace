@@ -116,7 +116,7 @@ if ($ENV{COMP_LINE} || $ENV{COMMAND_LINE}) {
     my $compres;
 
     if ($State->{state} eq 'uninit') {
-        $compres = ['0:Please-run-tabrace-first-to-init.', '9:'];
+        $compres = {message=>'Please run tabrace first to init the game.'};
     } else {
         $State->{start_time} //= time();
 
