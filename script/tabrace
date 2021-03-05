@@ -384,3 +384,6 @@ Show high scores and exit.
 
 
 =head1 SEE ALSO
+
+This game serves as a demo of the L<Complete> module family, including
+L<Complete::Bash>, L<Complete::Util>, and so on.
