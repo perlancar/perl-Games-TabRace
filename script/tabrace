@@ -217,13 +217,13 @@ completion for your shell. Here's how to do it in bash:
 Or alternatively, install shcompgen from CPAN using 'cpanm -n App::shcompgen'.
 For instructions on how to enable tab completion for other shells, see manpage.
 
-The objective of the game is to type 3 numbers as fast as possible. For each
-number, you type "tabrace " then press Tab (Tab) to see digits between 0 to 9.
-There's an 'x' next to the correct digit. Type the correct digit and press Tab
-(Tab) again to see the next digit. After all digits are typed, press Enter to
-clock in your time for the number. Your points will be determined from how fast
-you typed the number. Do the same for the rest of the numbers to get the total
-score.
+The objective of the game is to type three numbers (each number has between 4
+and 6 digits) as fast as possible, digit by digit. For each number, you type
+"tabrace " then press Tab (Tab) to see digits between 0 to 9. There's an 'x'
+next to the correct digit. Type the correct digit and press Tab (Tab) again to
+see the next digit. After all digits are typed, press Enter to clock in your
+time for the number. Your points will be determined from how fast you typed the
+number. Do the same for the rest of the numbers to get the total score.
 
 I'm ready to play! Are you? Type "tabrace" and press Tab (Tab) to start.
 
