@@ -1,3 +1,8 @@
+0.007   2021-03-08  Released-By: PERLANCAR; Urgency: medium
+
+	- Replace Text::Table::Tiny with Text::Table::Sprintf.
+
+
 0.006   2021-03-05  Released-By: PERLANCAR; Urgency: low
 
 	- No functional changes.
