@@ -60,11 +60,11 @@ sub enter_high_scores {
 }
 
 sub print_high_scores {
-    require Text::Table::Tiny;
+    require Text::Table::Sprintf;
 
     $State->{high_scores} //= [];
 
-    say Text::Table::Tiny::generate_table(
+    say Text::Table::Sprintf::generate_table(
         header_row => 1,
         rows => [
             ['Name', 'Score', 'Time'],
