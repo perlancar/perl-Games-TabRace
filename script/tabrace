@@ -64,7 +64,7 @@ sub print_high_scores {
 
     $State->{high_scores} //= [];
 
-    say Text::Table::Sprintf::generate_table(
+    say Text::Table::Sprintf::table(
         header_row => 1,
         rows => [
             ['Name', 'Score', 'Time'],

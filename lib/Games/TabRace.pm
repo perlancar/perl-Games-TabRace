@@ -1,6 +1,8 @@
 package Games::TabRace;
 
+# AUTHORITY
 # DATE
+# DIST
 # VERSION
 
 1;
