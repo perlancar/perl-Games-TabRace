@@ -307,6 +307,10 @@ To type a number (type digit marked by x):
  % tabrace 4708<tab>
  % tabrace 4708 _<enter>
 
+A demo screencast:
+
+# IMAGE: share/images/screencast1.gif
+
 
 =head1 DESCRIPTION
 
