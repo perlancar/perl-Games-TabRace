@@ -1,8 +1,5 @@
 #!perl
 
-# DATE
-# VERSION
-
 # FRAGMENT id=shcompgen-hint command=tabrace
 
 use 5.010001;
@@ -10,6 +7,11 @@ use strict;
 use warnings;
 
 use Time::HiRes qw(time);
+
+# AUTHORITY
+# DATE
+# DIST
+# VERSION
 
 my %Opts = (
     'data_file' => "$ENV{HOME}/.tabrace.dat",
@@ -285,7 +287,7 @@ _
 
 } # outside tab completion
 
-# ABSTRACT: A game played by shell tab completion
+# ABSTRACT: Type numbers digit by digit, as fast as you can
 # PODNAME:
 
 =head1 SYNOPSIS
@@ -391,3 +393,5 @@ Show high scores and exit.
 
 This game serves as a demo of the L<Complete> module family, including
 L<Complete::Bash>, L<Complete::Util>, and so on.
+
+Other games played by tab completion: L<Games::TabNoun>.

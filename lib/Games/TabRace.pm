@@ -1,3 +1,5 @@
+# no code
+## no critic: TestingAndDebugging::RequireUseStrict
 package Games::TabRace;
 
 # AUTHORITY
@@ -6,7 +8,7 @@ package Games::TabRace;
 # VERSION
 
 1;
-# ABSTRACT: A game played using shell tab completion
+# ABSTRACT: Type numbers digit by digit, as fast as you can
 
 =head1 SYNOPSIS
 
